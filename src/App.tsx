@@ -282,7 +282,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/4kNKL8kCCV3vt9U2k28Lyx?utm_source=generator" 
-                width="80%" 
+                width=100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -308,7 +308,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/5TC7mEjQzD2Q3Mr2rySOp7?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -321,7 +321,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/1fD154mTxJaX8ON82ddJog?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -334,7 +334,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/1aKvZDoLGkNMxoRYgkckZG?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -347,7 +347,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/1HFblnk2Twji0kDogp9D1o?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -360,7 +360,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/4TqmTBSWsZXMj3LouLEvXn?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -373,7 +373,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/0R902FnwJO8kBZYvtpQLrL?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -386,7 +386,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/episode/5VCdJlz83bp9a7hKteckGj?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -399,7 +399,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/4EsRpVBBKiqOZ67DJj0QHF?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
