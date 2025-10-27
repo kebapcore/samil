@@ -129,7 +129,7 @@ const Index = () => {
               className="max-h-10 md:max-h-12 w-auto object-contain"
             />
             <img
-              src="https://static.wikia.nocookie.net/logopedia/images/a/ac/Doki_Doki_Literature_Club_Logo.png/revision/latest/scale-to-width-down/1200?cb=20210703202454"
+              src="https://static.wikia.nocookie.net/logopedia/images/a/ac/Doki_Doki_Literature_Club_Logo.png/"
               alt="DDLC"
               className="max-h-12 md:max-h-14 w-auto object-contain"
             />
