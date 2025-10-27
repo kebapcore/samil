@@ -19,7 +19,7 @@ const Index = () => {
         
         try {
           // Play intro audio
-          const introAudio = new Audio("/first.mp3");
+          const introAudio = new Audio("/first.m4a");
           introAudioRef.current = introAudio;
           introAudio.volume = 0.5;
           await introAudio.play();
@@ -42,7 +42,7 @@ const Index = () => {
           
           // Intro bittiğinde ana müziği başlat
           introAudio.onended = async () => {
-            const mainAudio = new Audio("/msc01.mp3");
+            const mainAudio = new Audio("/background.m4a");
             mainAudioRef.current = mainAudio;
             mainAudio.loop = true;
             mainAudio.volume = 0.3;
