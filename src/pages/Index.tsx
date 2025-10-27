@@ -12,7 +12,7 @@ const Index = () => {
       if (!audioStarted) {
         try {
           // Play intro audio
-          const introAudio = new Audio("https://fastcdn.onrender.com/whoo");
+          const introAudio = new Audio("/first.mp3");
           introAudioRef.current = introAudio;
           introAudio.volume = 0.5;
           
@@ -20,7 +20,7 @@ const Index = () => {
           
           // When intro ends, play main audio
           introAudio.onended = async () => {
-            const mainAudio = new Audio("https://fastcdn.onrender.com/msc01");
+            const mainAudio = new Audio("/msc01.mp3");
             mainAudioRef.current = mainAudio;
             mainAudio.loop = true;
             mainAudio.volume = 0.3;
@@ -59,7 +59,7 @@ const Index = () => {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend')",
+            backgroundImage: "url('/background.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -67,7 +67,7 @@ const Index = () => {
         />
         <div className="relative z-10">
           <img
-            src="https://fastcdn.onrender/samil.png"
+            src="/Şamil.png"
             alt="Şamil Logo"
             className="w-full max-w-3xl h-auto px-4"
           />
@@ -79,7 +79,7 @@ const Index = () => {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundImage: "url('/background.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -147,7 +147,7 @@ const Index = () => {
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundImage: "url('/grad')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
