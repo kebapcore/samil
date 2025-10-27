@@ -86,13 +86,13 @@ const Index = () => {
           }}
         />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
             Meet Şamil
           </h2>
-          <p className="text-base md:text-lg mb-6 text-secondary">
+          <p className="text-lg md:text-xl mb-6 text-secondary">
             A 13-year-old who codes games, composes music, and writes creative stories — all from home.
           </p>
-          <p className="text-sm md:text-base max-w-2xl mx-auto text-muted-foreground leading-relaxed">
+          <p className="text-base md:text-lg max-w-2xl mx-auto text-muted-foreground leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
@@ -102,7 +102,7 @@ const Index = () => {
       {/* Inspiration Section */}
       <section className="min-h-screen py-20 px-4 bg-background flex flex-col items-center justify-center">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-12">
             Inspiration Sources
           </h2>
           
@@ -124,7 +124,7 @@ const Index = () => {
             />
           </div>
           
-          <p className="text-sm md:text-base italic max-w-2xl mx-auto text-muted-foreground">
+          <p className="text-base md:text-lg italic max-w-2xl mx-auto text-muted-foreground">
             "Even though I don't play many games, I've experienced the most meaningful ones. 
             The best inspirations create the best stories."
           </p>
@@ -143,24 +143,24 @@ const Index = () => {
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             Projects
           </h2>
           
-          <div className="flex flex-row gap-8 justify-center">
+          <div className="flex flex-col gap-8 items-center">
             {[1, 2, 3].map((i) => (
               <Card
                 key={i}
-                className="bg-card border-border overflow-hidden cursor-pointer w-80"
+                className="bg-card border-border overflow-hidden cursor-pointer w-full max-w-4xl"
               >
                 <img
                   src={`https://via.placeholder.com/400x300`}
                   alt={`Project ${i}`}
-                  className="w-full h-56 object-cover"
+                  className="w-full h-80 object-cover"
                 />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3">Project {i}</h3>
-                  <p className="text-base text-muted-foreground">
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold mb-4">Project {i}</h3>
+                  <p className="text-lg text-muted-foreground">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Sed do eiusmod tempor incididunt.
                   </p>
