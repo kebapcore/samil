@@ -282,7 +282,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/4kNKL8kCCV3vt9U2k28Lyx?utm_source=generator" 
-                width=100%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
