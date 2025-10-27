@@ -76,6 +76,10 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  }
+  
+  .font-body {
     font-family: 'Poppins', sans-serif;
   }
   
@@ -89,16 +93,11 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
   }
   
-  .text-glow {
-    text-shadow: 0 0 20px hsl(var(--glow-primary) / 0.5);
-  }
-  
   .hover-glow {
     transition: all 0.3s ease;
   }
   
   .hover-glow:hover {
-    box-shadow: 0 0 30px hsl(var(--glow-primary) / 0.6);
     transform: scale(1.05);
   }
   
