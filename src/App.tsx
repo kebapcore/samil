@@ -70,65 +70,8 @@ const Index = () => {
     };
   }, [audioStarted]);
 
-  const handlePlayClick = async () => {
-    if (!audioStarted) {
-      setAudioStarted(true);
-      
-      try {
-        const introAudio = new Audio("/first.m4a");
-        introAudioRef.current = introAudio;
-        introAudio.volume = 0.5;
-        await introAudio.play();
-        
-        setShowIntro(true);
-        setIsFading(true);
-        
-        setTimeout(() => {
-          setIsChaos(true);
-        }, 2000);
-        
-        setTimeout(() => {
-          setShowIntro(false);
-          setIsFading(false);
-          setIsChaos(false);
-        }, 8000);
-        
-        introAudio.onended = async () => {
-          const mainAudio = new Audio("/background.m4a");
-          mainAudioRef.current = mainAudio;
-          mainAudio.loop = true;
-          mainAudio.volume = 0.3;
-          await mainAudio.play();
-        };
-
-      } catch (error) {
-        console.log("Audio autoplay prevented:", error);
-        setAudioStarted(false);
-      }
-    }
-  };
-
   return (
     <div className={`min-h-screen bg-background text-foreground ${isChaos ? 'animate-chaos-container' : ''}`}>
-      
-      {/* Play Button */}
-      {!audioStarted && (
-        <button
-          onClick={handlePlayClick}
-          className="fixed top-4 right-4 z-50 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full p-4 shadow-lg transition-all hover:scale-110"
-          aria-label="Play"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </button>
-      )}
       
       {/* INTRO ANIMATION OVERLAYS */}
       {showIntro && (
