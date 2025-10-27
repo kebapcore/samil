@@ -76,12 +76,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div 
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0"
           style={{
-            backgroundImage: "url('https://deltarune.com/assets/images/key-art.png')",
-            backgroundSize: "contain",
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend')",
+            backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
@@ -96,8 +96,17 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="min-h-screen py-20 px-4 gradient-midnight-orange relative overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center animate-on-scroll">
+      <section className="relative min-h-screen py-20 px-4 overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto text-center animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Meet Şamil
           </h2>
@@ -144,8 +153,17 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="min-h-screen py-20 px-4 gradient-midnight-orange">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative min-h-screen py-20 px-4 overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+        <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 animate-on-scroll">
             Projects
           </h2>
