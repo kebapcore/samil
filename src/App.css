@@ -41,8 +41,8 @@
 /* == YENİ EKLENEN ANİMASYON KODLARI == */
 /* ================================================ */
 
-/* Siyah perdenin kaybolma (fade-out) animasyonu */
-@keyframes fade-out {
+/* Siyah perdenin yavaşça açılma (fade-in) animasyonu */
+@keyframes fade-in {
   from { opacity: 1; }
   to { opacity: 0; }
 }
@@ -69,8 +69,8 @@
 
 /* Bu animasyonları uygulamak için yardımcı sınıflar */
 /* React bileşeninde bu sınıfları kullanacağız */
-.animate-fade-out-intro {
-  animation: fade-out 5s ease-out forwards;
+.animate-fade-in-intro {
+  animation: fade-in 2s ease-out forwards;
 }
 
 .animate-chaos-container {
