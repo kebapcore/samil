@@ -88,4 +88,72 @@ All colors MUST be HSL.
   .gradient-midnight-orange {
     background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
   }
+  
+  /* Parallax effects */
+  .parallax-slow {
+    transform: translateZ(-1px) scale(1.5);
+  }
+  
+  .parallax-medium {
+    transform: translateZ(-2px) scale(2);
+  }
+}
+
+@keyframes fadeInFromBlack {
+  0% {
+    opacity: 1;
+    background-color: #000;
+  }
+  100% {
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@keyframes shakeIntense {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-5px, -5px) rotate(-1deg); }
+  20% { transform: translate(5px, 5px) rotate(1deg); }
+  30% { transform: translate(-5px, 5px) rotate(-1deg); }
+  40% { transform: translate(5px, -5px) rotate(1deg); }
+  50% { transform: translate(-5px, -5px) rotate(-1deg); }
+  60% { transform: translate(5px, 5px) rotate(1deg); }
+  70% { transform: translate(-5px, 5px) rotate(-1deg); }
+  80% { transform: translate(5px, -5px) rotate(1deg); }
+  90% { transform: translate(-5px, -5px) rotate(-1deg); }
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-fade-in-intro {
+  animation: fadeInFromBlack 2s ease-out forwards;
+}
+
+.animate-shake {
+  animation: shakeIntense 0.5s infinite;
+}
+
+.animate-float {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }

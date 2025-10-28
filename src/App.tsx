@@ -8,7 +8,7 @@ const Index = () => {
 
   const [showIntro, setShowIntro] = useState(false);
   const [isFading, setIsFading] = useState(false);
-  const [isChaos, setIsChaos] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
 
   const introAudioRef = useRef<HTMLAudioElement | null>(null);
   const mainAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -32,16 +32,16 @@ const Index = () => {
         setShowIntro(true);
         setIsFading(true);
 
-        // Start chaos at 2 seconds (after fade-in completes)
+        // Start shaking at 2 seconds (after fade completes)
         setTimeout(() => {
-          setIsChaos(true);
+          setIsFading(false);
+          setIsShaking(true);
         }, 2000);
 
         // End all intro effects at 8 seconds
         setTimeout(() => {
           setShowIntro(false);
-          setIsFading(false);
-          setIsChaos(false);
+          setIsShaking(false);
         }, 8000);
 
         introAudio.onended = async () => {
@@ -84,37 +84,32 @@ const Index = () => {
   }, []); // Bağımlılık dizisi boş olmalı!
 
   return (
-    // ... JSX kodunuzun geri kalanı aynı ...
-    <div className={`min-h-screen bg-background text-foreground ${isChaos ? 'animate-chaos-container' : ''}`}>
+    <div className={`min-h-screen bg-background text-foreground ${isShaking ? 'animate-shake' : ''}`}>
       
       {/* INTRO ANIMATION OVERLAYS */}
-      {showIntro && (
-        <>
-          <div 
-            className={`fixed inset-0 bg-black z-50 pointer-events-none ${isFading ? 'animate-fade-in-intro' : ''}`}
-          />
-          {isChaos && (
-            <div className="fixed inset-0 bg-white z-40 pointer-events-none animate-chaos-flash" />
-          )}
-        </>
+      {showIntro && isFading && (
+        <div 
+          className="fixed inset-0 bg-black z-50 pointer-events-none animate-fade-in-intro"
+        />
       )}
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-transform duration-300"
           style={{
-            backgroundImage: "url('/background.png')",
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            transform: "translateZ(0)",
           }}
         />
-        <div className="relative z-10">
+        <div className="relative z-10 animate-float">
           <img
             src="/Şamil.png"
             alt="Şamil Logo"
-            className="w-full max-w-3xl h-auto px-4"
+            className="w-full max-w-3xl h-auto px-4 animate-pulse-slow"
           />
         </div>
       </section>
@@ -122,15 +117,28 @@ const Index = () => {
       {/* About Section */}
       <section className="relative min-h-screen py-20 px-4 overflow-hidden">
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('/grad.png')",
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            transform: "translateZ(0)",
           }}
         />
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="relative z-10 max-w-4xl mx-auto text-center"
+          onMouseMove={(e) => {
+            const section = e.currentTarget;
+            const rect = section.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            section.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+          }}
+          style={{ transition: 'transform 0.3s ease' }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-8">
             Şamil'le tanışın.
           </h2>
@@ -154,15 +162,28 @@ const Index = () => {
       {/* Inspiration Section */}
       <section className="relative min-h-screen py-20 px-4 overflow-hidden flex flex-col items-center justify-center">
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('/grad.png')",
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            transform: "translateZ(0)",
           }}
         />
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
+        <div className="relative z-10 max-w-5xl mx-auto text-center"
+          onMouseMove={(e) => {
+            const section = e.currentTarget;
+            const rect = section.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            section.style.transform = `perspective(1000px) rotateY(${x * 3}deg) rotateX(${-y * 3}deg)`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+          }}
+          style={{ transition: 'transform 0.3s ease' }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-12">
             İlham Kaynakları
           </h2>
@@ -170,17 +191,17 @@ const Index = () => {
             <img
               src="https://deltarune.com/assets/images/logo.png"
               alt="Deltarune"
-              className="max-h-16 md:max-h-20 w-auto object-contain"
+              className="max-h-16 md:max-h-20 w-auto object-contain hover-lift cursor-pointer"
             />
             <img
               src="https://undertale.com/assets/images/logo.png"
               alt="Undertale"
-              className="max-h-14 md:max-h-16 w-auto object-contain"
+              className="max-h-14 md:max-h-16 w-auto object-contain hover-lift cursor-pointer"
             />
             <img
               src="https://static.wikia.nocookie.net/logopedia/images/a/ac/Doki_Doki_Literature_Club_Logo.png/"
               alt="DDLC"
-              className="max-h-20 md:max-h-24 w-auto object-contain"
+              className="max-h-20 md:max-h-24 w-auto object-contain hover-lift cursor-pointer"
             />
           </div>
           <p className="text-base md:text-lg italic max-w-2xl mx-auto text-muted-foreground">
@@ -192,12 +213,13 @@ const Index = () => {
       {/* Favori Kişiler Section */}
       <section className="relative min-h-screen py-20 px-4 overflow-hidden flex items-center justify-center">
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('/grad.png')",
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            transform: "translateZ(0)",
           }}
         />
         <div className="relative z-10 max-w-6xl mx-auto">
@@ -206,67 +228,67 @@ const Index = () => {
           </h2>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12">
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 hover-lift cursor-pointer">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg">
                 <img
                   src="https://pbs.twimg.com/profile_images/1304111803614613504/NKxFjarS_400x400.jpg"
                   alt="Toby Fox"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
               </div>
               <p className="text-base md:text-lg font-semibold text-center">Toby Fox</p>
             </div>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 hover-lift cursor-pointer">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBthBa0b3cmttRX_xQWxwrivEvDylEDTjGzA&s"
                   alt="Baldiback"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
               </div>
               <p className="text-base md:text-lg font-semibold text-center">Baldiback</p>
             </div>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 hover-lift cursor-pointer">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg">
                 <img
                   src="https://yt3.googleusercontent.com/1XGmIYnF566Cd1m6W1GBKZoib8GeCicjf8zzfQRLDjSy_nQiIm8_lIBY7jmHKzq6WGfHXl9siw=s900-c-k-c0x00ffffff-no-rj"
                   alt="i love az-r"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
               </div>
               <p className="text-base md:text-lg font-semibold text-center">Yusuf İpek</p>
             </div>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 hover-lift cursor-pointer">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTevw7RDcE77GJ2OcfDtwnJZaN7m4Nc1Xd8Ig&s"
                   alt="i miss her"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
               </div>
               <p className="text-base md:text-lg font-semibold text-center">Ali Deniz Çelebi</p>
             </div>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 hover-lift cursor-pointer">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg">
                 <img
                   src="https://img-s1.onedio.com/id-628f46202aab58e91b04d559/rev-0/w-600/h-337/f-jpg/s-365037b91d4f26c685b149b7fe186dd70b3d4e33.jpg"
                   alt="DETERMINATION OH YEAH."
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
               </div>
               <p className="text-base md:text-lg font-semibold text-center">Saniye</p>
             </div>
 
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 hover-lift cursor-pointer">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary shadow-lg">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAMUJ3wm-vxsWqoj6anVHacTvt6UpuwEGIrTbET9ewTFNoR5r1YkQ5FyN85Ew73eRW40A&usqp=CAU"
                   alt="garip zevkler mi..?"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
               </div>
               <p className="text-base md:text-lg font-semibold text-center">Jo Yuri</p>
@@ -278,12 +300,13 @@ const Index = () => {
       {/* Favori Şarkılar Section */}
       <section className="relative min-h-screen py-20 px-4 overflow-hidden">
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('/grad.png')",
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            transform: "translateZ(0)",
           }}
         />
         <div className="relative z-10 max-w-6xl mx-auto">
@@ -428,12 +451,13 @@ const Index = () => {
       {/* Üzerinde Çalıştıklarım Section */}
       <section className="relative min-h-screen py-20 px-4 overflow-hidden">
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('/grad.png')",
+            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            transform: "translateZ(0)",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -450,7 +474,7 @@ const Index = () => {
 
           {/* VARTX Card */}
           <div className="flex justify-center">
-            <Card className="bg-card border-border overflow-hidden cursor-pointer w-full max-w-5xl">
+            <Card className="bg-card border-border overflow-hidden cursor-pointer w-full max-w-5xl hover-lift">
               <div className="grid md:grid-cols-2 gap-8 p-8">
                 <div className="flex flex-col justify-center">
                   <h3 className="text-3xl md:text-4xl font-bold mb-4">En Son Hayata Geçirilen</h3>
