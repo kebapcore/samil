@@ -3,58 +3,65 @@ import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 
 const Index = () => {
-  const [audioStarted, setAudioStarted] = useState(false);
+  // Değişiklik 1: useState'i kaldırıp useRef ekledik.
+  const hasStartedRef = useRef(false);
+
   const [showIntro, setShowIntro] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [isChaos, setIsChaos] = useState(false);
-  
+
   const introAudioRef = useRef<HTMLAudioElement | null>(null);
   const mainAudioRef = useRef<HTMLAudioElement | null>(null);
 
+  // Değişiklik 2: Bağımlılık dizisini boş [] yaptık.
   useEffect(() => {
     const playSequence = async () => {
-      if (!audioStarted) {
-        setAudioStarted(true);
-        
-        try {
-          const introAudio = new Audio("/first.m4a");
-          introAudioRef.current = introAudio;
-          introAudio.volume = 0.5;
-          await introAudio.play();
-          
-          // Start animations immediately when audio starts
-          setShowIntro(true);
-          setIsFading(true);
-          
-          // Start chaos at 2 seconds (after fade-in completes)
-          setTimeout(() => {
-            setIsChaos(true);
-          }, 2000);
-          
-          // End all intro effects at 8 seconds
-          setTimeout(() => {
-            setShowIntro(false);
-            setIsFading(false);
-            setIsChaos(false);
-          }, 8000);
-          
-          introAudio.onended = async () => {
-            const mainAudio = new Audio("/background.m4a");
-            mainAudioRef.current = mainAudio;
-            mainAudio.loop = true;
-            mainAudio.volume = 0.3;
-            await mainAudio.play();
-          };
+      // Değişiklik 3: State yerine ref'i kontrol ediyoruz.
+      if (hasStartedRef.current) {
+        return; // Zaten başladıysa tekrar çalıştırma.
+      }
+      hasStartedRef.current = true; // Başladı olarak işaretle.
 
-        } catch (error) {
-          console.log("Audio autoplay prevented:", error);
-          setAudioStarted(false);
-        }
+      try {
+        const introAudio = new Audio("/first.m4a");
+        introAudioRef.current = introAudio;
+        introAudio.volume = 0.5;
+        await introAudio.play();
+
+        // Start animations immediately when audio starts
+        setShowIntro(true);
+        setIsFading(true);
+
+        // Start chaos at 2 seconds (after fade-in completes)
+        setTimeout(() => {
+          setIsChaos(true);
+        }, 2000);
+
+        // End all intro effects at 8 seconds
+        setTimeout(() => {
+          setShowIntro(false);
+          setIsFading(false);
+          setIsChaos(false);
+        }, 8000);
+
+        introAudio.onended = async () => {
+          const mainAudio = new Audio("/background.m4a");
+          mainAudioRef.current = mainAudio;
+          mainAudio.loop = true;
+          mainAudio.volume = 0.3;
+          await mainAudio.play();
+        };
+      } catch (error) {
+        console.log("Audio autoplay prevented:", error);
+        // Hata durumunda, kullanıcının tekrar deneyebilmesi için ref'i sıfırla.
+        hasStartedRef.current = false;
       }
     };
 
     const handleInteraction = () => {
       playSequence();
+      // Listener'ları kaldırmaya gerek yok, çünkü playSequence artık kendini engelliyor.
+      // Ama yine de performanstan kazanmak için kaldırılabilir.
       document.removeEventListener("click", handleInteraction);
       document.removeEventListener("keydown", handleInteraction);
     };
@@ -65,12 +72,19 @@ const Index = () => {
     return () => {
       document.removeEventListener("click", handleInteraction);
       document.removeEventListener("keydown", handleInteraction);
-      if (introAudioRef.current) introAudioRef.current.pause();
-      if (mainAudioRef.current) mainAudioRef.current.pause();
+      if (introAudioRef.current) {
+        introAudioRef.current.pause();
+        introAudioRef.current = null;
+      }
+      if (mainAudioRef.current) {
+        mainAudioRef.current.pause();
+        mainAudioRef.current = null;
+      }
     };
-  }, [audioStarted]);
+  }, []); // Bağımlılık dizisi boş olmalı!
 
   return (
+    // ... JSX kodunuzun geri kalanı aynı ...
     <div className={`min-h-screen bg-background text-foreground ${isChaos ? 'animate-chaos-container' : ''}`}>
       
       {/* INTRO ANIMATION OVERLAYS */}
@@ -445,17 +459,9 @@ const Index = () => {
                     Düşünen, duygulu yapay zeka.
                   </p>
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    VARTX, sadece bir yapay zeka değil. Düşünebilen, türk yapımı gelişmiş bir yapay zeka modeli. 
-                    En hızlı ve en doğru, en gerekli yanıtı verir. Duyguları mükemmel şekilde simüle eder ve 
-                    klişe yanıtlardan kaçınır. Gerçek bir konuşma deneyimi sunmak için tasarlandı.
+                    VARTX, sadece bir yapay zeka değil. Düşünebilen, Türk yapımı gelişmiş bir yapay zeka modeli. 
+                    En hızlı ve en doğru, en gerekli yanıtı verir. Duyguları mükemmel şekilde anlar ve işler. Sadece verileri analiz etmekle kalmaz, aynı zamanda bağlamı, niyeti ve satır aralarındaki duygusal tonu da kavrar. Hedefim, VARTX'i sadece bir soru-cevap makinesi değil, insanların gerçekten 'konuşabileceği', fikir alışverişi yapabileceği ve hatta yaratıcı süreçlerde iş birliği yapabileceği bir dijital varlık haline getirmek.
                   </p>
-                </div>
-                <div className="flex items-center justify-center">
-                  <img
-                    src="/vartx.png"
-                    alt="VARTX"
-                    className="w-full h-auto rounded-lg shadow-2xl"
-                  />
                 </div>
               </div>
             </Card>
