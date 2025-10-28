@@ -98,7 +98,7 @@ const Index = () => {
         <div 
           className="absolute inset-0 transition-transform duration-300"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend')",
+            backgroundImage: "url('/background.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -119,7 +119,7 @@ const Index = () => {
         <div 
           className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundImage: "url('/grad.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -164,7 +164,7 @@ const Index = () => {
         <div 
           className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundImage: "url('/grad.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -215,7 +215,7 @@ const Index = () => {
         <div 
           className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundImage: "url('/grad.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -302,7 +302,7 @@ const Index = () => {
         <div 
           className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundImage: "url('/grad.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -332,7 +332,7 @@ const Index = () => {
               <iframe 
                 style={{ borderRadius: '12px' }} 
                 src="https://open.spotify.com/embed/track/0Mh4zlDsN7s0YMbsas12et?utm_source=generator" 
-                width="80%" 
+                width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen 
@@ -453,7 +453,7 @@ const Index = () => {
         <div 
           className="absolute inset-0 transition-transform duration-700"
           style={{
-            backgroundImage: "url('http://fastcdn.onrender.com/dlextend2')",
+            backgroundImage: "url('/grad.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
